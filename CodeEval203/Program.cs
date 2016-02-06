@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeEval203
 {
@@ -11,7 +9,7 @@ namespace CodeEval203
     {
         public static IEnumerable<int> FindAllIndexesOf(this string str, string substr)
         {
-            int foundIndex = str.IndexOf(substr);
+            var foundIndex = str.IndexOf(substr);
             while (foundIndex != -1)
             {
                 yield return foundIndex;
@@ -21,19 +19,18 @@ namespace CodeEval203
         }
     }
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(line =>
-                        line.FindAllIndexesOf(">>-->").Count()
-                        + line.FindAllIndexesOf("<--<<").Count()
-                    )
+                    line.FindAllIndexesOf(">>-->").Count()
+                    + line.FindAllIndexesOf("<--<<").Count()
+                )
                 .ToList()
                 .ForEach(cleanedUpLine => Console.WriteLine(cleanedUpLine));
-
         }
     }
 }

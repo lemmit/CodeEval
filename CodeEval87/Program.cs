@@ -4,14 +4,15 @@ using System.Linq;
 
 namespace CodeEval87
 {
-    class Program
+    internal class Program
     {
+        private static readonly int[,] Matrix = new int[256, 256];
 
         public static T[] GetRow<T>(T[,] matrix, int row)
         {
             var columns = matrix.GetLength(1);
             var array = new T[columns];
-            for (int i = 0; i < columns; ++i)
+            for (var i = 0; i < columns; ++i)
                 array[i] = matrix[row, i];
             return array;
         }
@@ -19,7 +20,7 @@ namespace CodeEval87
         public static void SetRow<T>(T[,] matrix, int row, T value)
         {
             var columns = matrix.GetLength(1);
-            for (int i = 0; i < columns; ++i)
+            for (var i = 0; i < columns; ++i)
                 matrix[row, i] = value;
         }
 
@@ -27,7 +28,7 @@ namespace CodeEval87
         {
             var rows = matrix.GetLength(0);
             var array = new T[rows];
-            for (int i = 0; i < rows; ++i)
+            for (var i = 0; i < rows; ++i)
                 array[i] = matrix[i, column];
             return array;
         }
@@ -35,15 +36,13 @@ namespace CodeEval87
         public static void SetColumn<T>(T[,] matrix, int column, T value)
         {
             var rows = matrix.GetLength(0);
-            for (int i = 0; i < rows; ++i)
+            for (var i = 0; i < rows; ++i)
                 matrix[i, column] = value;
         }
 
-        private static int[,] Matrix = new int[256, 256];
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .ToList()
                 .ForEach(line =>

@@ -2,11 +2,11 @@
 using System.IO;
 using System.Linq;
 
-class Program
+internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        var input = (args.Length > 0 && !string.IsNullOrEmpty(args[0])) ? args[0] : "../../input.txt";
+        var input = args.Length > 0 && !string.IsNullOrEmpty(args[0]) ? args[0] : "../../input.txt";
         File.ReadAllLines(input).Select(line =>
         {
             var splitted = line.Split(' ').Select(elem => int.Parse(elem)).ToArray();
@@ -28,10 +28,7 @@ class Program
                     return "B";
                 }
                 return iter.ToString();
-            }).Aggregate(string.Empty, (seed, str) => string.IsNullOrEmpty(seed) ? str : seed + " " + str); 
-        }).ToList().ForEach(line =>
-        {
-           Console.WriteLine(line);
-        });
+            }).Aggregate(string.Empty, (seed, str) => string.IsNullOrEmpty(seed) ? str : seed + " " + str);
+        }).ToList().ForEach(line => { Console.WriteLine(line); });
     }
 }

@@ -4,27 +4,28 @@ using System.Linq;
 
 namespace CodeEval199
 {
-    class Program
+    internal class Program
     {
         public static bool IsLetter(char letter)
         {
             return (letter >= 'A' && letter <= 'Z') ||
                    (letter >= 'a' && letter <= 'z');
         }
+
         public static bool IsLetter(string letter)
         {
             return IsLetter(letter[0]);
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(line =>
                 {
                     var str = "";
                     var pos = 0;
-                    for (int i = 0; i < line.Length; i++)
+                    for (var i = 0; i < line.Length; i++)
                     {
                         var ch = line[i].ToString();
                         if (IsLetter(ch))

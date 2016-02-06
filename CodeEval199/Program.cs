@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeEval199
 {
@@ -12,7 +10,7 @@ namespace CodeEval199
         public static string Bitmasked(this string str, string bitmask)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < str.Length; i++)
+            for (var i = 0; i < str.Length; i++)
             {
                 var current = str[i].ToString();
 
@@ -36,11 +34,11 @@ namespace CodeEval199
         }
     }
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(line =>
                 {

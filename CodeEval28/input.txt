@@ -1,0 +1,19 @@
+﻿Hello,ell
+This is good, is
+CodeEval,C*Eval
+Old,Young
+CodeEval,C\*Eval
+CodeEval,C\*Eval
+C*odeEval,C\**Eval
+*So*eaE, *JH*
+*So*eaE, **
+blblah*, blb*h*
+blah*, blb*h*
+blah*, blb*h
+Old, *Young*
+Old, *ung*
+Old, *l*
+Old, O*l*
+Old, *d
+Old, O*
+Old, O*d

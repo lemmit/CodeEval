@@ -4,17 +4,16 @@ using System.Linq;
 
 namespace CodeEval60
 {
-    class Program
+    internal class Program
     {
-
-        static IDictionary<Tuple<int,int>, bool> _dict 
+        private static readonly IDictionary<Tuple<int, int>, bool> _dict
             = new Dictionary<Tuple<int, int>, bool>();
 
         private static void FloodFill(int x, int y)
         {
             bool sentinel;
             var pos = new Tuple<int, int>(x, y);
-            bool wasThere =_dict.TryGetValue(pos, out sentinel);
+            var wasThere = _dict.TryGetValue(pos, out sentinel);
             if (!wasThere)
             {
                 if (CheckSum(pos))
@@ -44,13 +43,13 @@ namespace CodeEval60
         private static int SumOfDigits(int n)
         {
             if (n == 0) return 0;
-            return (n % 10) + SumOfDigits(n / 10);
+            return n%10 + SumOfDigits(n/10);
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            FloodFill(0,0);
-            Console.WriteLine(_dict.Count(p => p.Value == true));
+            FloodFill(0, 0);
+            Console.WriteLine(_dict.Count(p => p.Value));
         }
     }
 }

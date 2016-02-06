@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeEval14
 {
     public static class EnumerableExt
-    { 
+    {
         public static IEnumerable<string> CombinationsWithRepetition(this IEnumerable<char> input, int length)
         {
             if (length <= 0)
@@ -17,15 +15,16 @@ namespace CodeEval14
             {
                 foreach (var i in input)
                     foreach (var c in CombinationsWithRepetition(input, length - 1))
-                        yield return i.ToString() + c;
+                        yield return i + c;
             }
         }
     }
-    class Program
+
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0 && !string.IsNullOrEmpty(args[0])) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 && !string.IsNullOrEmpty(args[0]) ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(
                     line =>

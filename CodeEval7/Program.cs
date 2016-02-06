@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /* PREFIX EXPRESSIONS */
+
 namespace CodeEval7
 {
-    interface IOperator
+    internal interface IOperator
     {
         float Perform(float a, float b);
     }
 
-    class AddOperator : IOperator
+    internal class AddOperator : IOperator
     {
         public float Perform(float a, float b)
         {
@@ -21,26 +20,27 @@ namespace CodeEval7
         }
     }
 
-    class MulOperator : IOperator
+    internal class MulOperator : IOperator
     {
         public float Perform(float a, float b)
         {
-            return a * b;
+            return a*b;
         }
     }
 
-    class DivOperator : IOperator
+    internal class DivOperator : IOperator
     {
         public float Perform(float a, float b)
         {
-            return a / b;
+            return a/b;
         }
     }
-    class Program
+
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0 && !string.IsNullOrEmpty(args[0])) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 && !string.IsNullOrEmpty(args[0]) ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(line => EvaluatePrefixExpression(line))
                 .ToList()
@@ -78,7 +78,7 @@ namespace CodeEval7
                 var b = numberStack.Pop();
                 numberStack.Push(signStack.Pop().Perform(a, b));
             }
-            return (int)numberStack.Pop();
+            return (int) numberStack.Pop();
         }
     }
 }

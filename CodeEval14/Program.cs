@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeEval14
 {
@@ -11,8 +9,8 @@ namespace CodeEval14
     {
         public static IEnumerable<T> RemoveAt<T>(this IEnumerable<T> source, int indexToRemove)
         {
-            int index = 0;
-            foreach (T item in source)
+            var index = 0;
+            foreach (var item in source)
             {
                 if (index != indexToRemove)
                 {
@@ -24,29 +22,32 @@ namespace CodeEval14
 
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IEnumerable<T> source)
         {
-            int length = source.Count();
+            var length = source.Count();
             if (length != 0)
             {
-                int index = 0;
+                var index = 0;
                 foreach (var item in source)
                 {
                     var allOtherItems = source.RemoveAt(index);
                     foreach (var permutation in allOtherItems.Permutations())
                     {
-                        yield return new[] { item }.Concat(permutation);
+                        yield return new[] {item}.Concat(permutation);
                     }
                     index++;
                 }
             }
-            else { yield return new T[0]; }
+            else
+            {
+                yield return new T[0];
+            }
         }
     }
 
-    class PermutationComparer : IComparer<string>
+    internal class PermutationComparer : IComparer<string>
     {
         public int Compare(string xString, string yString)
         {
-            for (int i = 0; i < xString.Length; i++)
+            for (var i = 0; i < xString.Length; i++)
             {
                 var x = xString[i].ToString();
                 var y = yString[i].ToString();
@@ -66,11 +67,12 @@ namespace CodeEval14
             return 0;
         }
     }
-    class Program
+
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0 && !string.IsNullOrEmpty(args[0])) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 && !string.IsNullOrEmpty(args[0]) ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(
                     line => line

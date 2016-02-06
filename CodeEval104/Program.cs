@@ -1,16 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Text;
 
-class Program
+internal class Program
 {
-    static void Main(string[] args)
+    private static readonly IDictionary<string, int> _dict = new Dictionary<string, int>
     {
-        var input = (args.Length > 0) ? args[0] : "../../input.txt";
+        {"zero", 0},
+        {"one", 1},
+        {"two", 2},
+        {"three", 3},
+        {"four", 4},
+        {"five", 5},
+        {"six", 6},
+        {"seven", 7},
+        {"eight", 8},
+        {"nine", 9}
+    };
+
+    private static void Main(string[] args)
+    {
+        var input = args.Length > 0 ? args[0] : "../../input.txt";
         File.ReadAllLines(input)
-            .Select(line => 
+            .Select(line =>
                 ConvertToNumber(line.Split(';'))
             )
             .ToList()
@@ -26,18 +40,4 @@ class Program
         }
         return sb.ToString();
     }
-
-    static IDictionary<string, int> _dict = new Dictionary<string, int>()
-        {
-            {"zero", 0 },
-            {"one", 1 },
-            {"two", 2 },
-            {"three", 3 },
-            {"four", 4 },
-            {"five", 5 },
-            {"six", 6 },
-            {"seven", 7 },
-            {"eight", 8 },
-            {"nine", 9 },
-        };
 }

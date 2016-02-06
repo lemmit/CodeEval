@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.IO;
+using System.Linq;
 
-class Program
+internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-
-        var input = (args.Length > 0) ? args[0] : "../../input.txt";
+        var input = args.Length > 0 ? args[0] : "../../input.txt";
         File.ReadAllLines(input)
             .Select(line =>
             {
@@ -28,10 +27,7 @@ class Program
             {
                 return "N";
             }
-            else
-            {
-                return "S";
-            }
+            return "S";
         }
         if (coord[1] == coord[3])
         {
@@ -39,10 +35,7 @@ class Program
             {
                 return "E";
             }
-            else
-            {
-                return "W";
-            }
+            return "W";
         }
         if (coord[0] < coord[2])
         {
@@ -50,21 +43,12 @@ class Program
             {
                 return "NE";
             }
-            else
-            {
-                return "SE";
-            }
+            return "SE";
         }
-        else
+        if (coord[1] < coord[3])
         {
-            if (coord[1] < coord[3])
-            {
-                return "NW";
-            }
-            else
-            {
-                return "SW";
-            }
+            return "NW";
         }
+        return "SW";
     }
 }

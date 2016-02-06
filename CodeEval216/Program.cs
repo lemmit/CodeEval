@@ -10,12 +10,11 @@ namespace CodeEval216
         TotalBan = 0,
         Grant = 1,
         Write = 2,
-        Read = 4,
-    } ;
+        Read = 4
+    }
 
-    class Program
+    internal class Program
     {
-
         /*
                 file_1   file_2   file_3
         user_1     7        3        0
@@ -27,22 +26,23 @@ namespace CodeEval216
          */
 
         private static int[,] _grants;
+
         private static void PopulateGrantTable()
         {
-            _grants = new [,]
+            _grants = new[,]
             {
-                 {7,        3,        0},
-                 {6,        2,        4},
-                 {5,        1,        5},
-                 {3,        7,        1},
-                 {6,        0,        2},
-                 {4,        2,        6}
+                {7, 3, 0},
+                {6, 2, 4},
+                {5, 1, 5},
+                {3, 7, 1},
+                {6, 0, 2},
+                {4, 2, 6}
             };
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0 && !string.IsNullOrEmpty(args[0])) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 && !string.IsNullOrEmpty(args[0]) ? args[0] : "../../input.txt";
             File
                 .ReadAllLines(input)
                 .Select(line => CheckCommands(line.Split(' ')))
@@ -59,9 +59,9 @@ namespace CodeEval216
         private static bool CheckCommand(string command)
         {
             var elems = command
-                            .Split('=')
-                            .Select(elem => elem[0] == '>' ? elem.Substring(1) : elem)
-                            .ToArray();
+                .Split('=')
+                .Select(elem => elem[0] == '>' ? elem.Substring(1) : elem)
+                .ToArray();
             if (elems.Length == 3)
             {
                 return CheckAccessCommand(elems);
@@ -83,11 +83,8 @@ namespace CodeEval216
             {
                 return false;
             }
-            else
-            {
-                _grants[toWhom, file] = (int)((Rights)_grants[toWhom, file] | StringToRight(what));
-                return true;
-            }
+            _grants[toWhom, file] = (int) ((Rights) _grants[toWhom, file] | StringToRight(what));
+            return true;
         }
 
         private static Rights StringToRight(string right)
@@ -110,8 +107,8 @@ namespace CodeEval216
             var who = int.Parse(elems[0].Last().ToString()) - 1;
             var file = int.Parse(elems[1].Last().ToString()) - 1;
             var what = elems[2];
-            var hasAccess = ((Rights)_grants[who, file] & StringToRight(what)) != 0;
-           // Console.WriteLine($"{who} has {what}access:{hasAccess} to {file}");
+            var hasAccess = ((Rights) _grants[who, file] & StringToRight(what)) != 0;
+            // Console.WriteLine($"{who} has {what}access:{hasAccess} to {file}");
             return hasAccess;
         }
     }

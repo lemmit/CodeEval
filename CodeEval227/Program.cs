@@ -10,7 +10,7 @@ namespace CodeEval227
         public static string RemoveWhitespaces(this string str)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < str.Length; i++)
+            for (var i = 0; i < str.Length; i++)
             {
                 var ch = str[i];
                 if (!string.IsNullOrWhiteSpace(ch.ToString())) sb.Append(ch);
@@ -19,21 +19,21 @@ namespace CodeEval227
         }
     }
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var input = args.Length > 0 ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(line =>
                 {
                     var vals = line
-                                .RemoveWhitespaces()
-                                .Select(ch => int.Parse(ch.ToString()))
-                                .ToArray();
+                        .RemoveWhitespaces()
+                        .Select(ch => int.Parse(ch.ToString()))
+                        .ToArray();
                     var sumOfEveryThird = 0;
                     var notDubbed = 0;
-                    for (int i = 0; i < vals.Length; i++)
+                    for (var i = 0; i < vals.Length; i++)
                     {
                         if (i%2 == 0)
                         {

@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Numerics;
 
-class Program
+internal class Program
 {
-    static BigInteger[] fibs = new BigInteger[2000];
-    static int upTo = 1;
+    private static readonly BigInteger[] fibs = new BigInteger[2000];
+    private static int upTo = 1;
 
-    static BigInteger Fib(int n)
+    private static BigInteger Fib(int n)
     {
         if (n <= upTo)
         {
             return fibs[n];
         }
-        else
-        {
-            fibs[n] = Fib(n - 2) + Fib(n - 1);
-            upTo = Math.Max(upTo, n);
-            return fibs[n];
-        }
+        fibs[n] = Fib(n - 2) + Fib(n - 1);
+        upTo = Math.Max(upTo, n);
+        return fibs[n];
     }
-    static void Main(string[] args)
+
+    private static void Main(string[] args)
     {
         fibs[0] = 0;
         fibs[1] = 1;

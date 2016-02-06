@@ -1,14 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace CodeEval225
 {
-    
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var input = args.Length > 0 ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
@@ -17,8 +15,8 @@ namespace CodeEval225
                     var left = line.Split('|')[0].Trim();
                     var right = line.Split('|')[1].Trim();
                     var diffs = left.ToList().Zip(
-                            right.ToList(),
-                            (a, b) => a != b
+                        right.ToList(),
+                        (a, b) => a != b
                         );
                     return diffs.Count(diff => diff);
                 })

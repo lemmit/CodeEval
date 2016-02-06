@@ -5,17 +5,17 @@ using System.Linq;
 
 namespace CodeEval39
 {
-    class Program
+    internal class Program
     {
         private static int SumSquaredDigits(int n)
         {
             if (n == 0) return 0;
-            return ((n % 10)* (n % 10)) + SumSquaredDigits(n / 10);
+            return n%10*(n%10) + SumSquaredDigits(n/10);
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = (args.Length > 0 && !string.IsNullOrEmpty(args[0])) ? args[0] : "../../input.txt";
+            var input = args.Length > 0 && !string.IsNullOrEmpty(args[0]) ? args[0] : "../../input.txt";
             File.ReadAllLines(input)
                 .Select(line =>
                 {

@@ -40,8 +40,8 @@ namespace CodeEval51
 
         private static double Destination(Tuple<int, int> elem, Tuple<int, int> setElem)
         {
-            return Math.Sqrt(Math.Pow((double)elem.Item1 - (double) setElem.Item1, 2) +
-                                     Math.Pow((double)elem.Item2 - (double) setElem.Item2, 2));
+            return Math.Sqrt(Math.Pow(elem.Item1 - (double) setElem.Item1, 2) +
+                             Math.Pow(elem.Item2 - (double) setElem.Item2, 2));
         }
 
         private static IEnumerable<Tuple<int, int>[]> ToSets(string[] lines)

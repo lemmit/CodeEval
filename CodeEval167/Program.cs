@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.IO;
-using System.Text;
+using System.Linq;
 
-class Program
+internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        var input = (args.Length > 0) ? args[0] : "../../input.txt";
+        var input = args.Length > 0 ? args[0] : "../../input.txt";
         File.ReadAllLines(input)
             .Select(line => Trim(line))
             .ToList()
@@ -20,10 +19,10 @@ class Program
         {
             var cropped = line.Substring(0, 40);
             var ind = cropped.LastIndexOf(' ');
-            if(ind > 0)
+            if (ind > 0)
                 cropped = cropped.Substring(0, ind);
             return cropped.Trim() + "... <Read More>";
         }
-        else return line;
+        return line;
     }
 }
