@@ -20,7 +20,7 @@ internal class Program
         return matrix;
     }
 
-    private static string[,] Transpose(string[,] matrix)
+    private static string[,] Rotate(string[,] matrix)
     {
         var rank = matrix.GetLength(0);
         var transposed = new string[rank, rank];
@@ -54,7 +54,7 @@ internal class Program
             {
                 var vals = line.Split(' ');
                 var matrix = Deserialize(vals);
-                var transposed = Transpose(matrix);
+                var transposed = Rotate(matrix);
                 return Serialize(transposed)
                     .Aggregate(string.Empty, (seed, str) => string.IsNullOrEmpty(seed) ? str : seed + " " + str);
             }).ToList()

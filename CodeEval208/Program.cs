@@ -29,7 +29,7 @@ internal class Program
         return matrix;
     }
 
-    private static int[,] Transpose(int[,] matrix)
+    private static int[,] Rotate(int[,] matrix)
     {
         var rows = matrix.GetLength(0);
         var cols = matrix.GetLength(1);
@@ -59,7 +59,7 @@ internal class Program
                     .Select(e => int.Parse(e))
                     .ToList();
                 var matrix = Deserialize(vals, rowsCount);
-                var transposed = Transpose(matrix);
+                var transposed = Rotate(matrix);
                 return Enumerable
                     .Range(0, transposed.GetLength(0))
                     .Select(row => GetRow(transposed, row).Max())
