@@ -10,21 +10,17 @@ internal class Program
         File.ReadAllLines(input)
             .Select(line =>
             {
-                var columnNr = int.Parse(line) - 1;
-                var column = "";
-                var first = true;
-                while (columnNr > 0 || first)
+                var columnNr = int.Parse(line);
+                string column = "";
+                while (columnNr > 0)
                 {
-                    first = false;
-                    var m = 26;
-                    column += ((char) ('A' + (columnNr - 1)%m)).ToString();
-                    columnNr = columnNr/m;
+                    var mod = (columnNr - 1)%26;
+                    column += ((char)(mod+'A'));
+                    columnNr = (columnNr - mod)/26;
                 }
-                //adjust last
-                column = (char) (column.First() + 1) + column.Substring(1);
-                return column.Reverse().Aggregate(string.Empty, (seed, str) => seed + str);
+                return column.Reverse().Aggregate("", (s,e) => s=="" ? e+"" : s+e);
             })
             .ToList()
-            .ForEach(column => Console.WriteLine(column));
+            .ForEach(Console.WriteLine);
     }
 }

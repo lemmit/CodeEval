@@ -26,14 +26,14 @@ namespace CodeEval106
             var d = (integer%100)/10;
             if (d == 4)
             {
-                ages +=     
+                //ages +=     
             }else if (d == 9)
             {
 
             }
             else
             {
-                "".PadLeft("")
+               // "".PadLeft("")
             }
 
             return "";
